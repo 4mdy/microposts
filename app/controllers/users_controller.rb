@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
 
+
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
   end
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(id: :desc).page(params[:page])
     counts(@user)
+    @favorites = Favorite.all #お気に入りを一覧表示
   end
 
   def new
@@ -38,6 +40,14 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
+
+  def likes
+    #すでにお気に入りに追加しているのかを調べる処理が必要
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
+    counts(@user)
+  end
+
 
 
   private
