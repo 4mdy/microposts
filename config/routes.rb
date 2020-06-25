@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   member do
       get :followings
       get :followers
+      get :likes
     end
   end
 
@@ -19,8 +20,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   #Favorite用
-  resources :microposts do
-    resources :favorites, only: [:create, :destroy]
-  end
+  resources :favorites, only: [:create, :destroy]
 
 end

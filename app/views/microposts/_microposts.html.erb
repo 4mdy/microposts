@@ -14,8 +14,8 @@
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
         </div>
-        <!--お気に入りボタンを設置。renderでパーシャルを引用-->
-          <%= render 'favorites/likes', micropost: @micropost%>
+          <!--お気に入りボタンを設置。renderでパーシャルを引用-->
+          <%= render 'favorites/like_button', micropost: micropost %>
       </div>
     </li>
   <% end %>

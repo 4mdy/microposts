@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(id: :desc).page(params[:page])
     counts(@user)
-    @favorites = Favorite.all #お気に入りを一覧表示
   end
 
   def new
@@ -42,9 +41,8 @@ class UsersController < ApplicationController
   end
 
   def likes
-    #すでにお気に入りに追加しているのかを調べる処理が必要
     @user = User.find(params[:id])
-    @likes = @user.likes.page(params[:page])
+    @favorite_microposts = @user.favorite_microposts.page(params[:page])
     counts(@user)
   end
 
